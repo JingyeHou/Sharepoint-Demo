@@ -1,0 +1,31 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# WebViewer
+webviewer-react-sample/public/webviewer
+
+# dependencies
+webviewer-react-sample/node_modules
+webviewer-react-sample/.pnp
+webviewer-react-sample/.pnp.js
+
+# testing
+webviewer-react-sample/coverage
+
+# production
+webviewer-react-sample/build
+
+# misc
+webviewer-react-sample/.env
+webviewer-react-sample/.DS_Store
+webviewer-react-sample/.env.local
+webviewer-react-sample/.env.development.local
+webviewer-react-sample/.env.test.local
+webviewer-react-sample/.env.production.local
+webviewer-react-sample/package-lock.json
+webviewer-react-sample/yarn.lock
+webviewer-react-sample/public/assets/webviewer/core
+webviewer-react-sample/public/assets/webviewer/ui
+
+webviewer-react-sample/npm-debug.log*
+webviewer-react-sample/yarn-debug.log*
+webviewer-react-sample/yarn-error.log*
