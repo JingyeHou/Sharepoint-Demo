@@ -19,6 +19,10 @@
     "OPEN_IN_PDFTRON": {
       "title": { "default": "Open in PDFTron" },
       "type": "command"
+    },
+    "MERGE": {
+      "title": { "default": "Merge" },
+      "type": "command"
     }
   }
 }

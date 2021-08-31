@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
-    <CustomAction Title="ExportToDoc" RegistrationId="100" RegistrationType="List" Location="ClientSideExtension.ListViewCommandSet.ContextMenu" ClientSideComponentId="77e9cf8a-42c9-4e9e-9971-9658cef8980c"></CustomAction>
+    <CustomAction Title="ExportToDoc" RegistrationId="100" RegistrationType="List" Location="ClientSideExtension.ListViewCommandSet" ClientSideComponentId="77e9cf8a-42c9-4e9e-9971-9658cef8980c"></CustomAction>
 </Elements>

@@ -3,7 +3,6 @@ import WebViewer from '@pdftron/webviewer';
 import axios from 'axios';
 import qs from 'qs';
 import './App.css';
-
 const getDownloadFileName = (name, extension = '.pdf') => {
   if (name.slice(-extension.length).toLowerCase() !== extension) {
     name += extension;
@@ -31,13 +30,14 @@ const analyzeUrl = url => {
 };
 
 const App = () => {
+  console.log(body, 'body');
   const viewer = useRef(null);
   const [token, setToken] = useState('');
   useEffect(() => {
     if (!token) {
       axios({
         method: 'post',
-        url: `/${process.env.REACT_APP_TENANT_ID}/tokens/OAuth/2`,
+        url: `https://accounts.accesscontrol.windows.net/${process.env.REACT_APP_TENANT_ID}/tokens/OAuth/2`,
         headers: {
           Accept: 'application/json;odate=verbose',
           'Content-Type': 'application/x-www-form-urlencoded',
@@ -46,6 +46,11 @@ const App = () => {
         },
         data: qs.stringify(body)
       }).then(({ data }) => {
+        console.log(
+          `https://accounts.accesscontrol.windows.net/${process.env.REACT_APP_TENANT_ID}/tokens/OAuth/2`,
+          data
+        );
+        console.log(data);
         setToken(data.access_token);
       });
     }
@@ -59,8 +64,8 @@ const App = () => {
       },
       viewer.current
     ).then(instance => {
-      const { docViewer, annotManager } = instance;
-
+      const { docViewer, annotManager, UI } = instance;
+      UI.enableFeatures([UI.Feature.FilePicker]);
       var modal = {
         dataElement: 'meanwhileInFinlandModal',
         render: function renderCustomModal() {
@@ -139,16 +144,14 @@ const App = () => {
         .then(({ data }) => {
           instance.loadDocument(data, { filename });
         });
-      docViewer.on('documentLoaded', () => {
-        instance.setHeaderItems(header => {
-          header.push({
-            type: 'actionButton',
-            img:
-              '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M0 0h24v24H0z" fill="none"/><path d="M17 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V7l-4-4zm-5 16c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3zm3-10H5V5h10v4z"/></svg>',
-            onClick: async () => {
-              instance.openElements([modal.dataElement]);
-            }
-          });
+      instance.setHeaderItems(header => {
+        header.push({
+          type: 'actionButton',
+          img:
+            '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M0 0h24v24H0z" fill="none"/><path d="M17 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V7l-4-4zm-5 16c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3zm3-10H5V5h10v4z"/></svg>',
+          onClick: async () => {
+            instance.openElements([modal.dataElement]);
+          }
         });
       });
     });

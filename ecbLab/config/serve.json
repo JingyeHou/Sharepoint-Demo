@@ -7,7 +7,7 @@
       "pageUrl": "https://jingjackhou.sharepoint.com/sites/jingjackhou/Shared%20Documents/Forms/AllItems.aspx",
       "customActions": {
         "77e9cf8a-42c9-4e9e-9971-9658cef8980c": {
-          "location": "ClientSideExtension.ListViewCommandSet.ContextMenu",
+          "location": "ClientSideExtension.ListViewCommandSet",
           "properties": {
             "sampleTextOne": "One item is selected in the list",
             "sampleTextTwo": "This command is always visible."
