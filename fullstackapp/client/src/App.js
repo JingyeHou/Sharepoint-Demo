@@ -1,20 +1,12 @@
 import React, { useRef, useEffect, useState } from "react";
 import WebViewer from "@pdftron/webviewer";
 import axios from "axios";
-import qs from "qs";
 import "./App.css";
 const getDownloadFileName = (name, extension = ".pdf") => {
   if (name.slice(-extension.length).toLowerCase() !== extension) {
     name += extension;
   }
   return name;
-};
-
-const body = {
-  grant_type: process.env.REACT_APP_GRANT_TYPE,
-  client_id: process.env.REACT_APP_CLIENT_ID,
-  client_secret: process.env.REACT_APP_CLIENT_SECRET,
-  resource: process.env.REACT_APP_RESOURCE,
 };
 
 const analyzeUrl = (url) => {
@@ -30,7 +22,6 @@ const analyzeUrl = (url) => {
 };
 
 const App = () => {
-  console.log(body, "body");
   const viewer = useRef(null);
   const [token, setToken] = useState("");
   useEffect(() => {
@@ -44,12 +35,8 @@ const App = () => {
           "Access-Control-Allow-Origin": "*",
           "Access-Control-Allow-Credentials": true,
         },
-        data: qs.stringify(body),
+        data: "",
       }).then(({ data }) => {
-        console.log(
-          `https://accounts.accesscontrol.windows.net/${process.env.REACT_APP_TENANT_ID}/tokens/OAuth/2`,
-          data
-        );
         console.log(data);
         setToken(data.access_token);
       });
